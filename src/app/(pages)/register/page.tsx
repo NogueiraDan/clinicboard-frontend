@@ -46,7 +46,7 @@ export default function Page() {
           className="h-16 w-auto cursor-pointer"
         />
         <h1 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-[f3f3f3]">
-          Comece hoje no PsiBoard
+          Comece hoje no Clinicboard
         </h1>
       </div>
 
