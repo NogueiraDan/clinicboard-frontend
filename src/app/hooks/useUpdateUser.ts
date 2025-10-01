@@ -1,22 +1,22 @@
 import { useMutation } from "@tanstack/react-query";
-import api from "@/app/service/api";
 import { toast } from "react-toastify";
 import { isAxiosError } from "axios";
 import { useUser } from "../context/UserContext";
-import { UserUpdateRequest, UserUpdateResponse } from "../(pages)/dashboard/types";
+import { User } from "@/types";
+import { userService } from "@/app/service/user-service";
 
 export function useUpdateUser() {
   const { setUser, user } = useUser();
 
-  const handleSuccess = (data: UserUpdateResponse) => {
+  const handleSuccess = (data: User) => {
     toast.success("Usuário atualizado com sucesso!");
     setUser(data);
     window.location.reload();
   };
   const { mutateAsync } = useMutation({
-    mutationFn: async (data: UserUpdateRequest) => {
-      const response = await api.patch(`/users/${user?.id}`, data);
-      return response.data;
+    mutationFn: async (data: User) => {
+      const response = await userService.update(data, user?.id || "");
+      return response;
     },
     onSuccess: (data) => handleSuccess(data),
     onError(error) {

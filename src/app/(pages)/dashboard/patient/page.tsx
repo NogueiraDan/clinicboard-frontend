@@ -16,13 +16,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useUser } from "@/app/context/UserContext";
 import { useCreatePatient } from "@/app/hooks/useCreatePatients";
-import { PatientRequest } from "../types";
+import { Patient } from "@/types";
 import PageHeader from "@/components/page-header";
 
 const formSchema = z.object({
   name: z.string(),
   email: z.string(),
-  contact: z.string(),
+  phone: z.string(),
+  age: z.number(),
   observation: z.string(),
 });
 
@@ -34,15 +35,16 @@ export default function Page() {
     defaultValues: {
       name: "",
       email: "",
-      contact: "",
+      phone: "",
+      age: 0,
       observation: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const body: PatientRequest = {
+    const body: Patient = {
       ...values,
-      professionalId: user?.id ?? "",
+      user_id: user?.id ?? "",
     };
     try {
       await createPatient(body);
@@ -113,7 +115,7 @@ export default function Page() {
               <div className="sm:col-span-2 my-3">
                 <FormField
                   control={form.control}
-                  name="contact"
+                  name="phone"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Telefone para contato</FormLabel>
@@ -121,6 +123,29 @@ export default function Page() {
                         <Input
                           placeholder="(XX) XXXXX-XXXX"
                           type="tel"
+                          required
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="sm:col-span-1 my-3">
+                <FormField
+                  control={form.control}
+                  name="age"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Idade</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="25"
+                          type="number"
+                          min="0"
+                          max="120"
                           required
                           {...field}
                         />

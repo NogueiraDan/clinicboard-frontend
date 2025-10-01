@@ -1,16 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "../service/api";
-import { fetchHeaders } from "../utils/fetch-headers";
+import { patientService } from "@/app/service/business-service";
 
 export function usePatient(patientId: string = "") {
   const { data, isFetching, refetch } = useQuery({
     queryKey: ["schedules", patientId],
     queryFn: async () => {
-      const response = await api.get(
-        `/patient/${patientId}`,
-        { headers: fetchHeaders() }
-      );
-      return response.data;
+      const response = await patientService.findById(patientId);
+      return response;
     },
     enabled: !!patientId,
   });

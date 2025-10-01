@@ -11,13 +11,12 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { usePatients } from "@/app/hooks/usePatients";
 import { Button } from "@/components/ui/button";
-import { useAvailableSchedules } from "@/app/hooks/useAvailableSchedules";
+import { useAvailableAppointments } from "@/app/hooks/useAvailableAppointments";
 import { useUser } from "@/app/context/UserContext";
 import { toast } from "react-toastify";
-import { useCreateSchedule } from "@/app/hooks/useCreateSchedule";
+import { useCreateAppointment } from "@/app/hooks/useCreateAppointment";
 import PageHeader from "@/components/page-header";
-import { PatientResponse, ScheduleRequest } from "../types";
-import { combineDateAndTime } from "@/app/utils/combine-date";
+import { Appointment, Patient } from "@/types";
 
 type State = {
   date: Date | undefined;
@@ -51,10 +50,10 @@ function reducer(state: State, action: Action): State {
 
 export default function Page() {
   const { user } = useUser();
-  const { createSchedule } = useCreateSchedule();
+  const { createAppointment } = useCreateAppointment();
   const [state, dispatch] = useReducer(reducer, initialState);
   const { patients } = usePatients();
-  const { refetchSchedules, schedules } = useAvailableSchedules(state.date);
+  const { refetchAppointments, appointments } = useAvailableAppointments(state.date);
 
   const handleChange = (type: Action["type"], payload: Action["payload"]) => {
     dispatch({ type, payload } as Action);
@@ -62,14 +61,16 @@ export default function Page() {
 
   function handleChangeCalendarDay(date: Date) {
     handleChange("SET_DATE", date);
-    refetchSchedules();
+    refetchAppointments();
   }
 
   async function onSubmit() {
-    const body: ScheduleRequest = {
-      date: combineDateAndTime(state.date, state.schedule),
-      professionalId: user?.id ?? "",
-      patientId: state.selectedPatient,
+    const body: Appointment = {
+      date: state.date ? state.date.toISOString().split("T")[0] : "",
+      hour: state.schedule ?? "",
+      user_id: user?.id ?? "",
+      patient_id: state.selectedPatient,
+      type: "MARCACAO",
     };
     if (Object.values(body).some((value) => value === "")) {
       toast.error("Por favor! Selecione a DATA, o PACIENTE, e o HORÁRIO.");
@@ -77,7 +78,7 @@ export default function Page() {
     }
 
     try {
-      await createSchedule(body);
+      await createAppointment(body);
     } catch (error) {
       console.log(error);
     }
@@ -101,9 +102,9 @@ export default function Page() {
                 <SelectValue placeholder="Selecione o horário" />
               </SelectTrigger>
               <SelectContent>
-                {schedules.map((schedule: string) => (
-                  <SelectItem key={schedule} value={schedule}>
-                    {schedule}
+                {appointments.map((appointment: Appointment) => (
+                  <SelectItem key={appointment.id} value={appointment.id ?? ""}>
+                    {appointment.hour}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -121,8 +122,8 @@ export default function Page() {
                 <SelectValue placeholder="Selecione o paciente" />
               </SelectTrigger>
               <SelectContent>
-                {patients.map((patient: PatientResponse) => (
-                  <SelectItem key={patient.id} value={patient.id}>
+                {patients.map((patient: Patient) => (
+                  <SelectItem key={patient.id} value={patient.id ?? ""}>
                     {patient.name}
                   </SelectItem>
                 ))}

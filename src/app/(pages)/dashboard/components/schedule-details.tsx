@@ -19,15 +19,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ScheduleDetailsProps } from "../types";
-import { useDeleteSchedule } from "@/app/hooks/useDeleteSchedule";
+import { ScheduleDetailsProps } from "@/types";
+import { useDeleteAppointment } from "@/app/hooks/useDeleteAppointment";
 
 export default function ScheduleDetails({
   patientId,
   scheduleId,
 }: ScheduleDetailsProps) {
   const { patient } = usePatient(patientId);
-  const { deleteSchedule } = useDeleteSchedule(scheduleId);
+  const { deleteAppointment } = useDeleteAppointment(scheduleId);
 
   return (
     <AlertDialog>
@@ -64,7 +64,7 @@ export default function ScheduleDetails({
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>
-                <Button variant="destructive" onClick={() => deleteSchedule()}>Sim, quero excluir</Button>
+                <Button variant="destructive" onClick={() => deleteAppointment()}>Sim, quero excluir</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>

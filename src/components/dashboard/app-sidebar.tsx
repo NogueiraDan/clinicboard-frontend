@@ -19,6 +19,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { useUser } from "@/app/context/UserContext";
 import Link from "next/link";
@@ -93,6 +94,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold text-base">Clinicboard</span>
                   <span className="truncate text-xs">LTDA</span>
+                </div>
+                <div>
+                  <SidebarTrigger />
                 </div>
               </div>
             </SidebarMenuButton>

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import SkeletonTable from "../components/skeletons/table-skeleton";
 import PageHeader from "@/components/page-header";
-import { PatientResponse } from "../types";
+import { Patient } from "@/types";
 
 export default function Page() {
   const { patients, isFetching } = usePatients();
@@ -30,10 +30,10 @@ export default function Page() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {patients.map((patient: PatientResponse) => (
+            {patients.map((patient: Patient ) => (
               <TableRow key={patient.id}>
                 <TableCell>{patient.name}</TableCell>
-                <TableCell>{patient.contact}</TableCell>
+                <TableCell>{patient.phone}</TableCell>
                 <TableCell>{patient.email}</TableCell>
               </TableRow>
             ))}

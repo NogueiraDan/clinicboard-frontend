@@ -1,19 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
-import api from "@/app/service/api";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { isAxiosError } from "axios";
-import { ScheduleRequest, ScheduleResponse } from "../(pages)/dashboard/types";
-import { fetchHeaders } from "../utils/fetch-headers";
+import { Appointment } from "@/types";
+import { appointmentService } from "@/app/service/business-service";
 
-export function useCreateSchedule() {
+export function useCreateAppointment() {
   const router = useRouter();
   const { mutateAsync } = useMutation({
-    mutationFn: async (body: ScheduleRequest): Promise<ScheduleResponse> => {
-      const response = await api.post(`/appointment`, body, {
-        headers: fetchHeaders(),
-      });
-      return response.data;
+    mutationFn: async (body: Omit<Appointment, "id">): Promise<Appointment> => {
+      const response = await appointmentService.create(body);
+      return response;
     },
     onSuccess: () => {
       toast.success("Agendamento criado com sucesso!");
@@ -29,6 +26,6 @@ export function useCreateSchedule() {
   });
 
   return {
-    createSchedule: mutateAsync,
+    createAppointment: mutateAsync,
   };
 }

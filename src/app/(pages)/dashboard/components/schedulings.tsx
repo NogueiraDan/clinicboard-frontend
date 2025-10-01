@@ -4,17 +4,17 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import { SchedulingSkeleton } from "./skeletons/schedulings-skeleton";
-import { useSchedules } from "@/app/hooks/useSchedules";
+import { useAppointments } from "@/app/hooks/useAppointments";
 import ScheduleDetails from "./schedule-details";
-import { Schedule } from "../types";
+import { Appointment } from "@/types";
 
 export default function Schedulings() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
-  const { schedules, refetchSchedules, isFetching } = useSchedules(date);
+  const { appointments, refetchAppointments, isFetching } = useAppointments(date);
 
   function handleChangeCalendarDay(date: Date) {
     setDate(date);
-    refetchSchedules;
+    refetchAppointments();
   }
   return (
     <Card className="col-span-3">
@@ -34,26 +34,26 @@ export default function Schedulings() {
             <SchedulingSkeleton />
           ) : (
             <>
-              {schedules && (
+              {appointments && (
                 <React.Fragment>
-                  {schedules?.map((schedule: Schedule) => (
+                  {appointments?.map((appointment: Appointment) => (
                     <div
-                      key={schedule.id}
+                      key={appointment.id}
                       className="rounded border h-auto w-[90%] ml-5 mb-3 p-3 flex flex-col gap-1"
                     >
                       <p className="text-lg font-medium">
-                        Horário: {schedule.hour}
+                        Horário: {appointment.hour}
                       </p>
                       <p className="text-base font-medium">
-                        Data: {schedule.date}
+                        Data: {appointment.date}
                       </p>
-                      <ScheduleDetails patientId={schedule.patientId} scheduleId={schedule.id}/>
+                      <ScheduleDetails patientId={appointment.patient_id} scheduleId={appointment.id ?? ""}/>
                     </div>
                   ))}
                 </React.Fragment>
               )}
 
-              {schedules?.length <= 0 && !isFetching && (
+              {appointments?.length <= 0 && !isFetching && (
                 <h3 className="text-primary text-3xl ml-0">
                   Sem agendamentos para este dia!
                 </h3>
