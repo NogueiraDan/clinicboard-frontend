@@ -5,7 +5,7 @@ import { AxiosError, isAxiosError } from "axios";
 import Cookie from "js-cookie";
 import { useUser } from "../context/user-context";
 import { authService } from "../service/auth-service";
-import { LoginRequest } from "@/types";
+import { LoginRequest, LoginResponse } from "@/types";
 
 export function useLogin() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export function useLogin() {
   };
 
   const { mutateAsync } = useMutation({
-    mutationFn: async (body: LoginRequest) => {
+    mutationFn: async (body: LoginRequest): Promise<LoginResponse> => {
       const data = await authService.login(body);
       Cookie.set("sessionToken", data.access_token, { expires: 1 / 12 });
       Cookie.set("userRole", data.role);

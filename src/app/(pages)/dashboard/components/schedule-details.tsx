@@ -40,13 +40,13 @@ export default function ScheduleDetails({
           <AlertDialogDescription>
             <div className="flex flex-col gap-2">
               <p className="text-base font-medium text-slate-700">
-                Paciente: {patient.name}
+                Paciente: {patient?.name}
               </p>
               <p className="text-base font-medium text-slate-700">
-                Email: {patient.email}
+                Email: {patient?.email}
               </p>
               <p className="text-base font-medium text-slate-700">
-                Contato: {patient.contact}
+                Contato: {patient?.phone}
               </p>
             </div>
           </AlertDialogDescription>

@@ -14,7 +14,7 @@ export function useUpdateUser() {
     window.location.reload();
   };
   const { mutateAsync } = useMutation({
-    mutationFn: async (data: User) => {
+    mutationFn: async (data: User): Promise<User> => {
       const response = await userService.update(data, user?.id || "");
       return response;
     },

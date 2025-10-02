@@ -3,11 +3,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useUser } from "@/app/context/user-context";
 import { patientService } from "@/app/service/business-service";
+import { Patient } from "@/types";
 
 export function usePatients() {
   const { user } = useUser();
 
-  const { data, isFetching } = useQuery({
+  const { data, isFetching } = useQuery<Patient[] | undefined>({
     queryKey: ["schedules", user?.id],
     queryFn: async () => {
       const response = await patientService.findAll();
