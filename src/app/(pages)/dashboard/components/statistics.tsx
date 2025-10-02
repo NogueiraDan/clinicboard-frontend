@@ -1,12 +1,12 @@
 "use client";
 
-import { useAvailableSchedules } from "@/app/hooks/use-available-appointments";
+import {useAvailableAppointments } from "@/app/hooks/use-available-appointments";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useMemo } from "react";
 
 export default function Statistics() {
   const date = useMemo(() => new Date(), []);
-  const { schedules, isFetching } = useAvailableSchedules(date);
+  const { appointments, isFetching } = useAvailableAppointments(date);
   return (
     <>
       <Card className="min-h-full">
@@ -15,7 +15,7 @@ export default function Statistics() {
         </CardHeader>
         <CardContent>
           <div className="text-xl font-bold">
-            {isFetching ? "Carregando..." : schedules.length}
+            {isFetching ? "Carregando..." : appointments.length}
           </div>
         </CardContent>
       </Card>
