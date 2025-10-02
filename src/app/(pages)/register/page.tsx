@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRegister } from "@/app/hooks/useRegister";
+import { useRegister } from "@/app/hooks/use-register";
 
 const formSchema = z.object({
   name: z.string(),

@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { useUser } from "@/app/context/UserContext";
-import { useCreatePatient } from "@/app/hooks/useCreatePatients";
+import { useUser } from "@/app/context/user-context";
+import { useCreatePatient } from "@/app/hooks/use-create-patients";
 import { Patient } from "@/types";
 import PageHeader from "@/components/page-header";
 

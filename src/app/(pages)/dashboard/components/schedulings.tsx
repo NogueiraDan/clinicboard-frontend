@@ -4,7 +4,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import { SchedulingSkeleton } from "./skeletons/schedulings-skeleton";
-import { useAppointments } from "@/app/hooks/useAppointments";
+import { useAppointments } from "@/app/hooks/use-appointments";
 import ScheduleDetails from "./schedule-details";
 import { Appointment } from "@/types";
 

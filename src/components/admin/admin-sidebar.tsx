@@ -20,7 +20,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { useUser } from "@/app/context/UserContext";
+import { useUser } from "@/app/context/user-context";
 import Link from "next/link";
 import psiboard from "@/public/psiboard.png";
 import Image from "next/image";

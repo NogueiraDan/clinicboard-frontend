@@ -1,6 +1,6 @@
 "use client";
 
-import { usePatients } from "@/app/hooks/usePatients";
+import { usePatients } from "@/app/hooks/use-patients";
 import {
   Table,
   TableBody,

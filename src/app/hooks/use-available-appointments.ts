@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/user-context";
 import { formatDate } from "../utils/format-date";
 import { appointmentService } from "@/app/service/business-service";
 
-export function useAppointments(date: Date | undefined) {
+export function useAvailableAppointments(date: Date | undefined) {
   const { user } = useUser();
 
   const { data, isFetching, refetch } = useQuery({

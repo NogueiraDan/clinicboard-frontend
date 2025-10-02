@@ -1,4 +1,4 @@
-import { usePatient } from "@/app/hooks/usePatient";
+import { usePatient } from "@/app/hooks/use-patient";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScheduleDetailsProps } from "@/types";
-import { useDeleteAppointment } from "@/app/hooks/useDeleteAppointment";
+import { useDeleteAppointment } from "@/app/hooks/use-delete-appointment";
 
 export default function ScheduleDetails({
   patientId,

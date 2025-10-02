@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 import ReactQueryProvider from "./utils/providers/ReactQueryProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { UserProvider } from "./context/UserContext";
+import { UserProvider } from "./context/user-context";
 
 export const metadata: Metadata = {
   title: "Psiboard",

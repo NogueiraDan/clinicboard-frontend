@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/user-context";
 import Cookie from "js-cookie";
 
 export function useLogout() {

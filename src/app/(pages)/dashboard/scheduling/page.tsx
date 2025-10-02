@@ -9,12 +9,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
-import { usePatients } from "@/app/hooks/usePatients";
+import { usePatients } from "@/app/hooks/use-patients";
 import { Button } from "@/components/ui/button";
-import { useAvailableAppointments } from "@/app/hooks/useAvailableAppointments";
-import { useUser } from "@/app/context/UserContext";
+import { useAvailableAppointments } from "@/app/hooks/use-available-appointments";
+import { useUser } from "@/app/context/user-context";
 import { toast } from "react-toastify";
-import { useCreateAppointment } from "@/app/hooks/useCreateAppointment";
+import { useCreateAppointment } from "@/app/hooks/use-create-appointment";
 import PageHeader from "@/components/page-header";
 import { Appointment, Patient } from "@/types";
 

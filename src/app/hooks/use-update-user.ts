@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { isAxiosError } from "axios";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/user-context";
 import { User } from "@/types";
 import { userService } from "@/app/service/user-service";
 

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { AxiosError, isAxiosError } from "axios";
 import Cookie from "js-cookie";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/user-context";
 import { authService } from "../service/auth-service";
 import { LoginRequest } from "@/types";
 

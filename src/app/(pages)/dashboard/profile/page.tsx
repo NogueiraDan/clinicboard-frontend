@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useUser } from "@/app/context/UserContext";
+import { useUser } from "@/app/context/user-context";
 import PageHeader from "@/components/page-header";
 import { SidebarInset } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -18,7 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
-import { useUpdateUser } from "@/app/hooks/useUpdateUser";
+import { useUpdateUser } from "@/app/hooks/use-update-user";
 
 const formSchema = z.object({
   name: z.string(),

@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { useUser } from "@/app/context/UserContext";
+import { useUser } from "@/app/context/user-context";
 import { patientService } from "@/app/service/business-service";
 
 export function usePatients() {

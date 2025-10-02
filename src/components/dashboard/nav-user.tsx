@@ -19,7 +19,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { CaretSortIcon } from "@radix-ui/react-icons";
-import { useLogout } from "@/app/hooks/useLogout";
+import { useLogout } from "@/app/hooks/use-logout";
 import Link from "next/link";
 
 export function NavUser({

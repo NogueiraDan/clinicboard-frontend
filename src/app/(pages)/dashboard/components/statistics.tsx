@@ -1,6 +1,6 @@
 "use client";
 
-import { useAvailableSchedules } from "@/app/hooks/useAvailableAppointments";
+import { useAvailableSchedules } from "@/app/hooks/use-available-appointments";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useMemo } from "react";
 
