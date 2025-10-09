@@ -18,13 +18,10 @@ import { useLogin } from "@/app/hooks/use-login";
 
 const formSchema = z.object({
   email: z
-    .string({
-      required_error: "Valor não pode ser vazio",
-    })
-    .email(),
-  password: z.string({
-    required_error: "Valor não pode ser vazio",
-  }),
+    .email({ message: "Email inválido" }),
+  password: z
+    .string({ message: "Valor não pode ser vazio" })
+    .min(1, "Valor não pode ser vazio"),
 });
 
 export default function Page() {
